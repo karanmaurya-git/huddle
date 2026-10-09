@@ -1,0 +1,20 @@
+# Template for SELF-HOSTING LiveKit on a VPS with a public IP. Not tested in the build
+# environment. Replace every YOUR-* value. See docs/deployment.md for the full steps.
+port: 7880                 # signaling; put a TLS reverse proxy (Caddy/nginx) in front of it
+rtc:
+  tcp_port: 7881           # open in the firewall (TCP fallback)
+  udp_port: 7882           # open in the firewall (UDP media)
+  use_external_ip: true
+keys:
+  YOUR_API_KEY: YOUR_API_SECRET        # create your own, long and random
+webhook:
+  api_key: YOUR_API_KEY
+  urls:
+    - https://YOUR-SERVER.onrender.com/api/sfu/webhook
+turn:                      # needed for people on strict networks (corporate Wi-Fi, some mobile data)
+  enabled: true
+  domain: turn.YOUR-DOMAIN.com
+  tls_port: 5349
+  udp_port: 3478
+  cert_file: /etc/letsencrypt/live/turn.YOUR-DOMAIN.com/fullchain.pem
+  key_file: /etc/letsencrypt/live/turn.YOUR-DOMAIN.com/privkey.pem

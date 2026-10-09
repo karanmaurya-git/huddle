@@ -1,0 +1,19 @@
+# Local development helpers. NOT verified in the build environment (no Docker there):
+# if the SFU's media does not connect from your browser, run the livekit-server binary
+# directly on your machine instead (`livekit-server --dev`), which is what the tests use.
+services:
+  livekit:
+    image: livekit/livekit-server:latest
+    command: --dev --bind 0.0.0.0 --node-ip 127.0.0.1
+    ports:
+      - "7880:7880"       # signaling (WebSocket) and API
+      - "7881:7881"       # WebRTC over TCP (fallback)
+      - "7882:7882/udp"   # WebRTC over UDP (media)
+  mongo:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+volumes:
+  mongo-data: {}

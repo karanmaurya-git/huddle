@@ -1,0 +1,8 @@
+{
+  "name": "huddle",
+  "private": true,
+  "description": "Huddle: scalable video meetings with a LiveKit SFU",
+  "scripts": {
+    "setup": "node scripts/setup-env.mjs"
+  }
+}
