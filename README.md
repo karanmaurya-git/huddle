@@ -16,19 +16,18 @@ Video meetings with a real media server. Create a meeting, share the code, and t
 
 > Placeholders. Replace them after you deploy (see [docs/deployment.md](docs/deployment.md)). Nothing here has been deployed yet.
 
-| | Link |
-|---|---|
-| Frontend (Vercel) | `https://YOUR-APP.vercel.app` |
-| App server (Render) | `https://YOUR-SERVER.onrender.com/api` |
-| App WebSocket | `wss://YOUR-SERVER.onrender.com` |
-| Media server (LiveKit) | `wss://YOUR-LIVEKIT-HOST` |
+|                        | Link                                        |
+| ---------------------- | ------------------------------------------- |
+| Frontend (Vercel)      | https://huddle-zeta-lemon.vercel.app        |
+| App server (Render)    | https://huddle-server-u796.onrender.com/api |
+| App WebSocket          | wss://huddle-server-u796.onrender.com       |
+| Media server (LiveKit) | wss://huddle-6fwh0lzz.livekit.cloud         |
 
-## Screenshots
+## 🌐 View Live Button's
 
-<!-- Add real screenshots after running the app, for example:
-![Dashboard](docs/screenshots/dashboard.png)
-![Meeting](docs/screenshots/meeting.png)
--->
+[![View Live](https://img.shields.io/badge/🌐_YouTube_Watch_Party-View_Live-success?style=for-the-badge)](https://huddle-zeta-lemon.vercel.app/)
+
+[![Backend API](https://img.shields.io/badge/🖥️_Backend_Server-View_Live-blue?style=for-the-badge)](https://huddle-server-u796.onrender.com/)
 
 ## Features
 
@@ -45,14 +44,14 @@ Video meetings with a real media server. Create a meeting, share the code, and t
 
 ## Tech stack
 
-| Layer | Technology |
-|---|---|
-| Frontend | React 19, Vite, React Router, Axios, `livekit-client`, native browser `WebSocket`, plain CSS |
-| Backend | Node.js (ES modules), Express 5, `ws`, `livekit-server-sdk`, JWT, bcryptjs, Helmet, CORS, express-rate-limit |
-| Media | LiveKit SFU (open source), WebRTC |
-| Database | MongoDB (Atlas in production) with Mongoose |
-| Tests | Vitest, Supertest, real `ws` clients, jsdom and Testing Library, `@livekit/rtc-node` bots against a real LiveKit server |
-| Deployment target | Vercel (client), Render (app server), MongoDB Atlas, LiveKit Cloud or a VPS (SFU) |
+| Layer             | Technology                                                                                                              |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Frontend          | React 19, Vite, React Router, Axios, `livekit-client`, native browser `WebSocket`, plain CSS                            |
+| Backend           | Node.js (ES modules), Express 5, `ws`, `livekit-server-sdk`, JWT, bcryptjs, Helmet, CORS, express-rate-limit            |
+| Media             | LiveKit SFU (open source), WebRTC                                                                                       |
+| Database          | MongoDB (Atlas in production) with Mongoose                                                                             |
+| Tests             | Vitest, Supertest, real `ws` clients, jsdom and Testing Library, `@livekit/rtc-node` bots against a real LiveKit server |
+| Deployment target | Vercel (client), Render (app server), MongoDB Atlas, LiveKit Cloud or a VPS (SFU)                                       |
 
 ## Architecture
 
@@ -172,16 +171,16 @@ flowchart TD
 
 ## Roles and permissions
 
-| Action | Host | Moderator | Participant |
-|---|:-:|:-:|:-:|
-| Join, leave, chat, mic and camera, raise or lower own hand | yes | yes | yes |
-| Share screen (only if the presenter slot is free) | yes | yes | yes |
-| Mute, lower hand, stop share of someone | yes | Participants only | no |
-| Remove someone | yes | Participants only | no |
-| Assign or revoke Moderator | yes | no | no |
-| Transfer Host | yes | no | no |
-| Lock or unlock the meeting | yes | no | no |
-| End for everyone, delete the meeting | yes | no | no |
+| Action                                                     | Host |     Moderator     | Participant |
+| ---------------------------------------------------------- | :--: | :---------------: | :---------: |
+| Join, leave, chat, mic and camera, raise or lower own hand | yes  |        yes        |     yes     |
+| Share screen (only if the presenter slot is free)          | yes  |        yes        |     yes     |
+| Mute, lower hand, stop share of someone                    | yes  | Participants only |     no      |
+| Remove someone                                             | yes  | Participants only |     no      |
+| Assign or revoke Moderator                                 | yes  |        no         |     no      |
+| Transfer Host                                              | yes  |        no         |     no      |
+| Lock or unlock the meeting                                 | yes  |        no         |     no      |
+| End for everyone, delete the meeting                       | yes  |        no         |     no      |
 
 The creator is the Host; joiners are Participants. If the Host leaves, the longest-present Moderator (else Participant) becomes Host. The UI hides what you cannot do, but **the server rejects any unauthorized event**, even one sent by hand.
 
@@ -243,37 +242,37 @@ If you prefer to create the files by hand: `cp server/.env.example server/.env` 
 
 ### All commands
 
-| Where | Command | What it does |
-|---|---|---|
-| root | `npm run setup` | create `server/.env` and `client/.env` |
-| `server/` | `npm run dev` | start with auto-restart |
-| `server/` | `npm start` | start for production |
-| `server/` | `npm test` | 76 unit, REST and WebSocket tests (no database, no SFU needed) |
-| `server/` | `npm run test:sfu` | integration tests against a real `livekit-server` (downloads it once, skips with a message if it cannot run) |
-| `server/` | `npm run loadtest -- --users 20` | bots through the real join flow against a running server |
-| `client/` | `npm run dev` | dev server |
-| `client/` | `npm test` | 45 logic and component tests |
-| `client/` | `npm run build` | production build into `client/dist` |
+| Where     | Command                          | What it does                                                                                                 |
+| --------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| root      | `npm run setup`                  | create `server/.env` and `client/.env`                                                                       |
+| `server/` | `npm run dev`                    | start with auto-restart                                                                                      |
+| `server/` | `npm start`                      | start for production                                                                                         |
+| `server/` | `npm test`                       | 76 unit, REST and WebSocket tests (no database, no SFU needed)                                               |
+| `server/` | `npm run test:sfu`               | integration tests against a real `livekit-server` (downloads it once, skips with a message if it cannot run) |
+| `server/` | `npm run loadtest -- --users 20` | bots through the real join flow against a running server                                                     |
+| `client/` | `npm run dev`                    | dev server                                                                                                   |
+| `client/` | `npm test`                       | 45 logic and component tests                                                                                 |
+| `client/` | `npm run build`                  | production build into `client/dist`                                                                          |
 
 ## Environment variables
 
 **Server (`server/.env`)**
 
-| Variable | Example | Notes |
-|---|---|---|
-| `PORT` | `5000` | Render sets it |
-| `NODE_ENV` | `development` | `production` on Render |
-| `MONGODB_URI` | `mongodb://127.0.0.1:27017/huddle` | required |
-| `JWT_SECRET` | random string | required, 32+ characters in production |
-| `JWT_EXPIRE` | `7d` | |
-| `CLIENT_URL` | `http://localhost:5173` | exact frontend origin, no trailing slash (CORS and WebSocket origin check) |
-| `MAX_PARTICIPANTS` | `100` | application-level capacity |
-| `LIVEKIT_URL` | `ws://127.0.0.1:7880` | what browsers connect to (`wss://` in production) |
-| `LIVEKIT_API_URL` | `http://127.0.0.1:7880` | what the server calls (`https://` in production) |
-| `LIVEKIT_API_KEY`, `LIVEKIT_API_SECRET` | `devkey`, `secret` | the public dev defaults of `livekit-server --dev`; use your own in production |
-| `SFU_TOKEN_TTL_SECONDS` | `600` | |
-| `AUTH_RATE_LIMIT_MAX` | `100` | per 15 minutes per IP; raise for load tests |
-| `BCRYPT_ROUNDS` | `10` | password hashing cost |
+| Variable                                | Example                            | Notes                                                                         |
+| --------------------------------------- | ---------------------------------- | ----------------------------------------------------------------------------- |
+| `PORT`                                  | `5000`                             | Render sets it                                                                |
+| `NODE_ENV`                              | `development`                      | `production` on Render                                                        |
+| `MONGODB_URI`                           | `mongodb://127.0.0.1:27017/huddle` | required                                                                      |
+| `JWT_SECRET`                            | random string                      | required, 32+ characters in production                                        |
+| `JWT_EXPIRE`                            | `7d`                               |                                                                               |
+| `CLIENT_URL`                            | `http://localhost:5173`            | exact frontend origin, no trailing slash (CORS and WebSocket origin check)    |
+| `MAX_PARTICIPANTS`                      | `100`                              | application-level capacity                                                    |
+| `LIVEKIT_URL`                           | `ws://127.0.0.1:7880`              | what browsers connect to (`wss://` in production)                             |
+| `LIVEKIT_API_URL`                       | `http://127.0.0.1:7880`            | what the server calls (`https://` in production)                              |
+| `LIVEKIT_API_KEY`, `LIVEKIT_API_SECRET` | `devkey`, `secret`                 | the public dev defaults of `livekit-server --dev`; use your own in production |
+| `SFU_TOKEN_TTL_SECONDS`                 | `600`                              |                                                                               |
+| `AUTH_RATE_LIMIT_MAX`                   | `100`                              | per 15 minutes per IP; raise for load tests                                   |
+| `BCRYPT_ROUNDS`                         | `10`                               | password hashing cost                                                         |
 
 **Client (`client/.env`):** `VITE_API_URL=http://localhost:5000/api`, `VITE_WS_URL=ws://localhost:5000` (no `/api`, no path; `wss://` in production). Optional: `VITE_VIDEO_PAGE_SIZE`, `VITE_AUDIO_SUBSCRIBE_ALL_LIMIT`, `VITE_AUDIO_TOP_N`.
 
@@ -323,18 +322,18 @@ Run these yourself with two devices or browser profiles (ideally one on phone da
 
 ## Troubleshooting
 
-| Problem | Likely cause and fix |
-|---|---|
+| Problem                                                                            | Likely cause and fix                                                                                                                                                                                                    |
+| ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | In a meeting: **"Media failed"**, toast "Cannot reach the LiveKit media server..." | LiveKit is not running (or not on that address). Start it (`livekit-server --dev`), confirm `http://localhost:5000/api/health/media` says `reachable`, then press **Retry** in the banner. No need to leave the meeting |
-| Toast: "LiveKit rejected the API key or secret" | `LIVEKIT_API_KEY` and `LIVEKIT_API_SECRET` in `server/.env` do not match the keys LiveKit was started with (`livekit-server --dev` uses `devkey` and `secret`). Fix the file and restart the server |
-| Server prints `WARNING: media server not ready` at startup | Same two causes as above. The message says which one |
-| People are in the meeting (`2/100`, "Connected") but nobody sees or hears anyone | The app WebSocket works but the media connection does not. Check the two rows above, then camera and microphone permissions in the browser |
-| Camera or microphone blocked, "needs HTTPS or localhost" | Allow access in the browser address bar. Outside localhost, the site must use HTTPS |
-| Works on one Wi-Fi but not between Wi-Fi and phone data | A direct path is not possible; you need a TURN server (see `docs/deployment.md`) |
-| `Missing required environment variables` | `server/.env` is missing: run `npm run setup` in the project root |
-| `MongooseServerSelectionError ... 27017` | MongoDB is not running locally. Start it, or put your Atlas string in `MONGODB_URI` |
-| CORS error, or the WebSocket never connects | `CLIENT_URL` must be the exact frontend origin (no trailing slash); `VITE_WS_URL` must be `ws://` locally and `wss://` in production, without `/api` |
-| `EADDRINUSE :::5000` | Another process uses port 5000. Close it or change `PORT` |
+| Toast: "LiveKit rejected the API key or secret"                                    | `LIVEKIT_API_KEY` and `LIVEKIT_API_SECRET` in `server/.env` do not match the keys LiveKit was started with (`livekit-server --dev` uses `devkey` and `secret`). Fix the file and restart the server                     |
+| Server prints `WARNING: media server not ready` at startup                         | Same two causes as above. The message says which one                                                                                                                                                                    |
+| People are in the meeting (`2/100`, "Connected") but nobody sees or hears anyone   | The app WebSocket works but the media connection does not. Check the two rows above, then camera and microphone permissions in the browser                                                                              |
+| Camera or microphone blocked, "needs HTTPS or localhost"                           | Allow access in the browser address bar. Outside localhost, the site must use HTTPS                                                                                                                                     |
+| Works on one Wi-Fi but not between Wi-Fi and phone data                            | A direct path is not possible; you need a TURN server (see `docs/deployment.md`)                                                                                                                                        |
+| `Missing required environment variables`                                           | `server/.env` is missing: run `npm run setup` in the project root                                                                                                                                                       |
+| `MongooseServerSelectionError ... 27017`                                           | MongoDB is not running locally. Start it, or put your Atlas string in `MONGODB_URI`                                                                                                                                     |
+| CORS error, or the WebSocket never connects                                        | `CLIENT_URL` must be the exact frontend origin (no trailing slash); `VITE_WS_URL` must be `ws://` locally and `wss://` in production, without `/api`                                                                    |
+| `EADDRINUSE :::5000`                                                               | Another process uses port 5000. Close it or change `PORT`                                                                                                                                                               |
 
 ## Security
 
