@@ -16,12 +16,13 @@ Video meetings with a real media server. Create a meeting, share the code, and t
 
 > Placeholders. Replace them after you deploy (see [docs/deployment.md](docs/deployment.md)). Nothing here has been deployed yet.
 
-|                        | Link                                        |
-| ---------------------- | ------------------------------------------- |
-| Frontend (Vercel)      | https://huddle-zeta-lemon.vercel.app        |
-| App server (Render)    | https://huddle-server-u796.onrender.com/api |
-| App WebSocket          | wss://huddle-server-u796.onrender.com       |
-| Media server (LiveKit) | wss://huddle-6fwh0lzz.livekit.cloud         |
+|                        | Link                                               |
+| ---------------------- | -------------------------------------------------- |
+| Frontend (Vercel)      | https://huddle-zeta-lemon.vercel.app               |
+| App server (Render)    | https://huddle-server-u796.onrender.com            |
+| App server (Reder)     | https://huddle-server-u796.onrender.com/api/health |
+| App WebSocket          | wss://huddle-server-u796.onrender.com              |
+| Media server (LiveKit) | wss://huddle-6fwh0lzz.livekit.cloud                |
 
 ## 🌐 View Live Button's
 
